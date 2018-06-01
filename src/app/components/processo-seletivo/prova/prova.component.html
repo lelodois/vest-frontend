@@ -1,0 +1,92 @@
+<form [formGroup]="_provaForm" *ngIf="_initialized == true">
+
+    <div class="row form-group" *ngIf="isProvaTradicional() == true">
+        <div>
+            <app-prova-tradic #provaTradicionalComponent></app-prova-tradic>
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <fieldset>
+            <legend class="legend-title">Resultado</legend>
+            <div class="form-group">
+                <div formGroupName="gabarito">
+                    <div class="col-md-4 form-group"
+                         [ngClass]="hasErrorIn('gabarito.data')">
+                        <span for="dataGabarito">Data do Gabarito</span>
+                        <input type='date'
+                               class="form-control"
+                               id="dataGabarito"
+                               formControlName="data"/>
+                    </div>
+                    <div class="col-md-2 form-group"
+                         [ngClass]="hasErrorIn('gabarito.hora')">
+                        <span for="horaGabarito">Horas</span>
+                        <select id="horaGabarito"
+                                class="form-control"
+                                name="horaGabarito"
+                                formControlName="hora">
+
+                            <option *ngFor="let keyValue of _horasArray"
+                                    [value]="keyValue.key">
+                                {{ keyValue.value }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+
+                <div formGroupName="resultado">
+                    <div class="col-md-4 form-group"
+                         [ngClass]="hasErrorIn('resultado.data')">
+                        <span for="inputDateResult">Data do Resultado</span>
+                        <input type='date'
+                               class="form-control"
+                               formControlName="data"
+                               id="inputDateResult"/>
+                    </div>
+                    <div class="col-md-2 form-group"
+                         [ngClass]="hasErrorIn('resultado.hora')">
+                        <span for="horaResultado">Horas</span>
+                        <select id="horaResultado"
+                                class="form-control"
+                                name="horaResultado"
+                                formControlName="hora">
+
+                            <option *ngFor="let keyValue of _horasArray"
+                                    [value]="keyValue.key">
+                                {{ keyValue.value }}
+                            </option>
+
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-8">
+                    <span for="inputObservacao">Comentários</span>
+                    <textarea rows="2" class="form-control"
+                              name="inputComentario" formControlName="comentario">
+                </textarea>
+                </div>
+            </div>
+        </fieldset>
+    </div>
+
+    <div class="row form-group" *ngIf="isProvaAgendada() == true">
+        <div>
+            <app-prova-agend #provaAgendadaComponent></app-prova-agend>
+        </div>
+    </div>
+
+    <fieldset>
+        <div class='center alert alert-danger form-group'
+             style="margin: 20px;"
+             *ngIf="_errorMessages.length > 0">
+            Existem {{ _errorMessages.length }} campos com erros de validação.
+            <br>
+            Por favor, corrija os campos em vermelho e tente novamente.
+        </div>
+    </fieldset>
+
+</form>

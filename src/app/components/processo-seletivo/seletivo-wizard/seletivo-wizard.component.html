@@ -1,0 +1,193 @@
+<div class="row">
+    <ul class="breadcrumb">
+        <li>
+            {{_ciclo.empresa.nomeFantasia}}
+        </li>
+        <li>
+            {{_ciclo.descricao}}
+        </li>
+        <li *ngIf="_processoSeletivoId">
+            Edição do item: {{ _processoSeletivoNome}}
+        </li>
+        <li *ngIf="!_processoSeletivoId">
+            Novo processo seletivo
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <article class="col-sm-12 col-md-12 col-lg-12 sortable-grid ui-sortable">
+        <div id="wid-id-0">
+            <div role="content">
+                <div class="widget-body">
+                    <div class="row">
+                        <div id="bootstrap-wizard-1" class="col-sm-12">
+                            <div class="form-bootstrapWizard">
+                                <ul class="bootstrapWizard form-wizard">
+                                    <li data-target="#step1"
+                                        [ngClass]="isTabAtiva('tab1') ? 'active' : ''">
+                                        <span class="step">1</span>
+                                        <span class="title">Processo seletivo</span>
+                                    </li>
+                                    <li data-target="#step2"
+                                        [ngClass]="isTabAtiva('tab2') ? 'active' : ''">
+                                        <span class="step">2</span>
+                                        <span class="title">Prova</span>
+                                    </li>
+                                    <li data-target="#step3"
+                                        [ngClass]="isTabAtiva('tab3') ? 'active' : ''">
+                                        <a (click)="nextStep('tab3')">
+                                            <span class="step">3</span>
+                                            <span class="title">Oferta</span>
+                                        </a>
+                                    </li>
+                                    <li data-target="#step4"
+                                        [ngClass]="isTabAtiva('tab4') ? 'active' : ''">
+                                        <span class="step">4</span>
+                                        <span class="title">Resumo</span>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane" id="tab1"
+                                     [ngClass]="isTabAtiva('tab1') ? 'active' : ''">
+                                    <div style="padding-top: 40px;">
+                                        <app-processo-seletivo-save #tab1Form
+                                                                    [_processoSeletivoId]="_processoSeletivoId">
+                                        </app-processo-seletivo-save>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <ul class="pager wizard no-margin">
+                                                <li class="previous">
+                                                    <a (click)="navigateToProcessoSeletivoList()"
+                                                       class="btn btn-xs btn-default"
+                                                       data-toggle="modal">
+                                                        <span class="glyphicon glyphicon-arrow-left"></span>
+                                                        Voltar para Listagem
+                                                    </a>
+                                                </li>
+                                                <li class="next">
+                                                    <a class="btn btn-xs btn-success"
+                                                       style="background-color: green!important; float: right;"
+                                                       (click)="nextStep('tab2')">
+                                                        Próximo
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab2"
+                                     [ngClass]="isTabAtiva('tab2') ? 'active' : ''">
+                                    <div style="padding-top: 40px">
+                                        <app-prova #tab2Form>
+                                        </app-prova>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <ul class="pager wizard no-margin">
+                                                <li class="previous">
+                                                    <a class="btn btn-xs btn-default"
+                                                       (click)="previousStep('tab1')">
+                                                        Anterior
+                                                    </a>
+                                                </li>
+                                                <li class="next">
+                                                    <a class="btn btn-xs btn-success"
+                                                       style="background-color: green!important; float: right;"
+                                                       (click)="nextStep('tab3')">
+                                                        Próximo
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab3"
+                                     [ngClass]="isTabAtiva('tab3') ? 'active' : ''">
+                                    <div style="padding-top: 40px">
+                                        <app-oferta-save></app-oferta-save>
+                                    </div>
+
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <ul class="pager wizard no-margin">
+                                                    <li class="previous">
+                                                        <a data-toggle="tab"
+                                                           class="btn btn-xs btn-default"
+                                                           (click)="previousStep('tab2')">
+                                                            Anterior
+                                                        </a>
+                                                    </li>
+                                                    <li class="next">
+                                                        <a class="btn btn-xs btn-success"
+                                                           style="background-color: green!important; float: right;"
+                                                           (click)="nextStep('tab4')">
+                                                            Próximo
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane" id="tab4"
+                                     [ngClass]="isTabAtiva('tab4') ? 'active' : ''">
+                                    <div style="padding-top: 40px">
+                                        <app-resumo></app-resumo>
+                                    </div>
+                                    <div class="form-actions">
+                                        <div class="row">
+                                            <div class="col-sm-12">
+                                                <ul class="pager wizard no-margin">
+                                                    <li class="previous">
+                                                        <a data-toggle="tab"
+                                                           class="btn btn-xs btn-default"
+                                                           (click)="previousStep('tab3')">
+                                                            Anterior
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#finalizarProcessoModel"
+                                                           class="btn btn-xs btn-success pull-rigth"
+                                                           style="background-color: green!important; float: right;"
+                                                           data-toggle="modal"> Finalizar </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+</div>
+<div class="modal fade" id="finalizarProcessoModel" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span></button>
+                <h4 class="modal-title">Finalização do processo seletivo</h4>
+            </div>
+            <div class="modal-body">
+                <p>Tem certeza que deseja finalizar o processo seletivo?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Voltar</button>
+                <button type="button" class="btn btn-success" data-dismiss="modal"
+                        (click)="navigateToProcessoSeletivoList()">
+                    Finalizar
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

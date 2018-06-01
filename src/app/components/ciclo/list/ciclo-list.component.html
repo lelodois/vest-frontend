@@ -1,0 +1,96 @@
+<div class="row">
+    <ul class="breadcrumb">
+        <li *ngIf="_empresaSelecionada.nomeFantasia">
+            {{ _empresaSelecionada.nomeFantasia }}
+        </li>
+        <li>
+            Ciclos por empresa
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <fieldset>
+        <h4>
+            Empresas
+        </h4>
+        <div>
+            <select class="form-control" id="selectEmpresas"
+                    (change)="onChangeEmpresa($event)">
+                <option value="">Selecione a empresa</option>
+                <option
+                        *ngFor="let empresa of _empresasList"
+                        [selected]="empresa.codigoEmpresa == _empresaSelecionada.codigoEmpresa"
+                        [value]="empresa.codigoEmpresa">
+                    {{empresa.nomeFantasia}}
+                </option>
+            </select>
+        </div>
+    </fieldset>
+</div>
+
+<div class="row"
+     [ngClass]="_empresaSelecionada.codigoEmpresa > 0 ? '' : 'hide'">
+    <h4 class="legend-title" style="padding-top: 30px">
+        Listagem de Ciclos
+    </h4>
+    <div class="pull-right">
+        <button type="button" class="btn btn-primary btn-xs"
+                (click)="openCicloModal()">
+            <span class="glyphicon glyphicon-plus"></span> Novo Ciclo
+        </button>
+    </div>
+</div>
+
+<div class="row" style="padding-top: 10px;"
+     [ngClass]="_empresaSelecionada.codigoEmpresa > 0 ? '' : 'hide'">
+    <fieldset>
+        <div class="container">
+            <table class="table table-bordered" style="text-align: center;">
+                <thead>
+                <tr>
+                    <th>Descrição</th>
+                    <th>Código</th>
+                    <th>Situação Matrícula</th>
+                    <th>Situação Inscrição</th>
+                    <th>Edição</th>
+                    <th>Processos Seletivos</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr *ngIf="_ciclosList.length == 0">
+                    <td class="info" colspan="6">
+                        <span class="active">
+                           Nenhum item encontrado
+                        </span>
+                    </td>
+                </tr>
+
+                <tr *ngFor="let cicloIndex of _ciclosList">
+                    <td>{{cicloIndex.descricao}}</td>
+                    <td>{{cicloIndex.codigo}}</td>
+                    <td>{{cicloIndex.situacaoMatricula == 1 ? 'Ativo' : 'Inativo'}}</td>
+                    <td>{{cicloIndex.situacaoInscricao == 1 ? 'Ativo' : 'Inativo'}}</td>
+                    <td>
+                        <a class="btn btn-sm btn-primary btn-xs"
+                           (click)="openCicloModal(cicloIndex)">
+                            Editar Ciclo
+                        </a>
+                    </td>
+                    <td>
+                        <a class="btn btn-sm btn-info btn-xs"
+                           (click)="navigateToProcessoSeletivoList(cicloIndex)">
+                            Ver Processos
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </fieldset>
+</div>
+
+<div>
+    <app-ciclo-save #cicloSaveItem [_codigoEmpresa]="_empresaSelecionada.codigoEmpresa"></app-ciclo-save>
+</div>

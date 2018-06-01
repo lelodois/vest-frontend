@@ -1,0 +1,102 @@
+<form>
+    <div id="saveModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Cadastrar Novo Ciclo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="form-group">
+                            <div class="col-md-5">
+                                <span for="inputAno">Ano</span>
+                                <input type='number' class="form-control" name="ciclo.ano"
+                                       [disabled]="_edicaoCiclo == true"
+                                       [(ngModel)]="_ciclo.ano"/>
+                            </div>
+                            <div class="col-md-7 form-group">
+                                <div class="form-group">
+                                    <span>Semestre:</span>
+                                </div>
+                                <div class="form-group">
+                                    <label class="checkbox-inline ">
+                                        <input type="radio" name="optionsSemestre" value="1"
+                                               (change)="_ciclo.semestre = $event.target.value"
+                                               [disabled]="_edicaoCiclo == true"
+                                               [checked]="_ciclo.semestre == 1"/>
+                                        <span>1º </span>
+                                    </label>
+                                    <label class="checkbox-inline ">
+                                        <input type="radio" name="optionsSemestre" value="2"
+                                               (change)="_ciclo.semestre = $event.target.value"
+                                               [disabled]="_edicaoCiclo == true"
+                                               [checked]="_ciclo.semestre == 2"/>
+                                        <span>2º </span>
+                                    </label>
+                                    <label class="checkbox-inline ">
+                                        <input type="radio" name="optionsSemestre" value="0"
+                                               (change)="_ciclo.semestre = $event.target.value"
+                                               [disabled]="_edicaoCiclo == true"
+                                               [checked]="_ciclo.semestre == 0"/>
+                                        <span>Anual</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-5" style="padding-left: 0px;">
+                                <div class="col-md-12">
+                                    <span>Situação Matrícula:</span>
+                                </div>
+                                <div class="col-md-12">
+                                    <label class="checkbox-inline ">
+                                        <input type="radio" name="optionsMatricula" value="0"
+                                               (change)="_ciclo.situacaoMatricula = $event.target.value"
+                                               [checked]="_ciclo.situacaoMatricula == 0"/>
+                                        <span>Inativo</span>
+                                    </label>
+                                    <label class="checkbox-inline">
+                                        <input type="radio" name="optionsMatricula" value="1"
+                                               (change)="_ciclo.situacaoMatricula = $event.target.value"
+                                               [checked]="_ciclo.situacaoMatricula == 1"/>
+                                        <span>Ativo</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-md-7" style="padding-left: 0px;">
+                                <div class="col-md-12">
+                                    <span>Situação Inscrição:</span>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <label class="checkbox-inline ">
+                                        <input type="radio" name="optionsInscricao" value="0"
+                                               (change)="_ciclo.situacaoInscricao = $event.target.value"
+                                               [checked]="_ciclo.situacaoInscricao == 0"/>
+                                        <span>Inativo</span>
+                                    </label>
+                                    <label class="checkbox-inline ">
+                                        <input type="radio" name="optionsInscricao" value="1"
+                                               (change)="_ciclo.situacaoInscricao = $event.target.value"
+                                               [checked]="_ciclo.situacaoInscricao == 1"/>
+                                        <span>Ativo</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button #btnFechar type="button" class="btn btn-xs btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-xs btn-success"
+                            (click)="saveCiclo()">
+                        <span class="glyphicon glyphicon"></span> Save
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
