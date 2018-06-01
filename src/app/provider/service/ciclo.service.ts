@@ -22,8 +22,7 @@ export class CicloService {
             ciclo.codigo = this._ciclos.length + 1 * 1000;
             this._ciclos.push(ciclo);
         }
-        const empresas: Empresa[] = this._empresaService.getList();
-        ciclo.empresa = this._empresaService.filterByCodigo(codigoEmpresa, empresas);
+        ciclo.empresa  = this._empresaService.filterByCodigo(codigoEmpresa);
         this._eventsService.ciclosEvent.emit(ciclo);
     }
 

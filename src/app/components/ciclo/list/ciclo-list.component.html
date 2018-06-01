@@ -1,7 +1,7 @@
 <div class="row">
     <ul class="breadcrumb">
-        <li *ngIf="_empresaSelecionada.nomeFantasia">
-            {{ _empresaSelecionada.nomeFantasia }}
+        <li *ngIf="_empresaSelecionada?.nomeFantasia">
+            {{ _empresaSelecionada?.nomeFantasia}}
         </li>
         <li>
             Ciclos por empresa
@@ -18,11 +18,10 @@
             <select class="form-control" id="selectEmpresas"
                     (change)="onChangeEmpresa($event)">
                 <option value="">Selecione a empresa</option>
-                <option
-                        *ngFor="let empresa of _empresasList"
-                        [selected]="empresa.codigoEmpresa == _empresaSelecionada.codigoEmpresa"
+                <option *ngFor="let empresa of _empresasList"
+                        [selected]="empresa.codigoEmpresa == _empresaSelecionada?.codigoEmpresa"
                         [value]="empresa.codigoEmpresa">
-                    {{empresa.nomeFantasia}}
+                    {{empresa?.nomeFantasia}}
                 </option>
             </select>
         </div>
@@ -43,7 +42,7 @@
 </div>
 
 <div class="row" style="padding-top: 10px;"
-     [ngClass]="_empresaSelecionada.codigoEmpresa > 0 ? '' : 'hide'">
+     [ngClass]="(_empresaSelecionada.codigoEmpresa | async) > 0 ? '' : 'hide'">
     <fieldset>
         <div class="container">
             <table class="table table-bordered" style="text-align: center;">

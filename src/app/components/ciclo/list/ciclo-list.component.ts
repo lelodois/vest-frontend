@@ -30,7 +30,10 @@ export class CicloListComponent implements OnInit {
     }
 
     ngOnInit() {
-        this._empresasList = this.empresaService.getList();
+        this.empresaService.getList().subscribe(
+            data => this._empresasList = data
+        );
+
         this.listenerCicloListChanged();
 
         const parameter: CicloEmpresaParam = Object.assign(this.activatedRoute.snapshot.queryParams);
@@ -55,7 +58,7 @@ export class CicloListComponent implements OnInit {
         this._empresaSelecionada = new Empresa();
         const codigoEmpresa: number = event.target.value;
         if (codigoEmpresa) {
-            this._empresaSelecionada = this.empresaService.filterByCodigo(codigoEmpresa, this._empresasList);
+            this._empresaSelecionada = this.empresaService.filterByCodigo(codigoEmpresa);
             this.loadCiclosByEmpresa();
         }
     }
