@@ -1,11 +1,36 @@
-# Versão Frontend do sistema de vestibular
+# Título
+
+Versão Frontend do sistema de vestibular
+
+## Começando
+
+Clone este projeto e execute o comando abaixo:
+
+```
+  npm install && npm start
+```
+
+### Pré-requisitos
+
+```
+  NodeJs
+  Npm
+  AngularCli
+  Backend [https://github.com/lelodois/vestibular-backend]
+```
+### Tecnologias
 
 * Angular 4
 * Bootstrap
 * Typescript
 
-* `npm install && npm start`
+## Autor
 
-Navigate to `http://localhost:4200/`
+* **Léo Costa** - *Initial work* - [PurpleBooth](https://github.com/lelodois)
 
-## Este projeto conecta com o backend [https://github.com/lelodois/vestibular-backend]
+## Acknowledgments
+
+* Fullstack evangelist
+* Real case
+* etc
+
