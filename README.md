@@ -1,13 +1,11 @@
-# Layout Html x Angular 4
+# Versão Frontend do sistema de vestibular
 
-[New Sip]
-
-* Layout da tela de cadastro de vestibulares
-
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.4.10.
-
-## Development server
+* Angular 4
+* Bootstrap
+* Typescript
 
 * `npm install && npm start`
 
 Navigate to `http://localhost:4200/`
+
+## Este projeto conecta com o backend [https://github.com/lelodois/vestibular-backend]
