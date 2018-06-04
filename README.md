@@ -26,7 +26,7 @@ Clone este projeto e execute o comando abaixo:
 
 ## Autor
 
-* **Léo Costa** - *Initial work* - [PurpleBooth](https://github.com/lelodois)
+* **Léo Costa** - *Initial work* - [Eu on git](https://github.com/lelodois)
 
 ## Acknowledgments
 
