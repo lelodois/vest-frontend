@@ -12,11 +12,12 @@ Clone este projeto e execute o comando abaixo:
 
 ### Pré-requisitos
 
+Backend [https://github.com/lelodois/vestibular-backend]
+
 ```
   NodeJs
   Npm
   AngularCli
-  Backend [https://github.com/lelodois/vestibular-backend]
 ```
 ### Tecnologias
 
