@@ -19,56 +19,53 @@ export class Ciclo {
         return novoCiclo;
     }
 
-    get descricao(): string {
-        return this.semestre + '° semestre de ' + this.ano;
-    }
-
     get codigo(): number {
         return this._codigo;
+    }
+
+    set codigo(value: number) {
+        this._codigo = value;
     }
 
     get ano(): number {
         return this._ano;
     }
 
-    get empresa(): Empresa {
-        return this._empresa;
+    set ano(value: number) {
+        this._ano = value;
     }
 
     get semestre(): number {
         return this._semestre;
     }
 
-    set codigo(codigo: number) {
-        this._codigo = codigo;
+    set semestre(value: number) {
+        this._semestre = value;
     }
 
-    set ano(ano: number) {
-        this._ano = ano;
-    }
-
-    set semestre(semestre: number) {
-        this._semestre = semestre;
-    }
-
-    set empresa(empresa: Empresa) {
-        this._empresa = empresa;
-    }
-
-    get situacaoMatricula() {
+    get situacaoMatricula(): number {
         return this._situacaoMatricula;
     }
 
-    set situacaoMatricula(value) {
+    set situacaoMatricula(value: number) {
         this._situacaoMatricula = value;
     }
 
-    get situacaoInscricao() {
+    get situacaoInscricao(): number {
         return this._situacaoInscricao;
     }
 
-    set situacaoInscricao(value) {
+    set situacaoInscricao(value: number) {
         this._situacaoInscricao = value;
     }
+
+    get empresa(): Empresa {
+        return this._empresa;
+    }
+
+    set empresa(value: Empresa) {
+        this._empresa = value;
+    }
+
 
 }

@@ -42,7 +42,7 @@
 </div>
 
 <div class="row" style="padding-top: 10px;"
-     [ngClass]="(_empresaSelecionada.codigoEmpresa | async) > 0 ? '' : 'hide'">
+     [ngClass]="(_empresaSelecionada.codigoEmpresa) > 0 ? '' : 'hide'">
     <fieldset>
         <div class="container">
             <table class="table table-bordered" style="text-align: center;">
@@ -67,7 +67,7 @@
                 </tr>
 
                 <tr *ngFor="let cicloIndex of _ciclosList">
-                    <td>{{cicloIndex.descricao}}</td>
+                    <td>{{cicloIndex.semestre + '° semestre de ' + cicloIndex.ano}}</td>
                     <td>{{cicloIndex.codigo}}</td>
                     <td>{{cicloIndex.situacaoMatricula == 1 ? 'Ativo' : 'Inativo'}}</td>
                     <td>{{cicloIndex.situacaoInscricao == 1 ? 'Ativo' : 'Inativo'}}</td>

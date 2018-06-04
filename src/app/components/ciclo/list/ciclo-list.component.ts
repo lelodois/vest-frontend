@@ -39,7 +39,7 @@ export class CicloListComponent implements OnInit {
         const parameter: CicloEmpresaParam = Object.assign(this.activatedRoute.snapshot.queryParams);
         if (parameter && parameter.empresaId) {
             this._empresaSelecionada.fillByParameter(parameter);
-            this.loadCiclosByEmpresa();
+            this.loadCiclosByEmpresa(this._empresaSelecionada.codigoEmpresa);
         }
     }
 
@@ -47,7 +47,7 @@ export class CicloListComponent implements OnInit {
         this.eventsService.ciclosEvent.subscribe(
             (novoCiclo: Ciclo) => {
                 if (novoCiclo.codigo) {
-                    this.loadCiclosByEmpresa();
+                    this.loadCiclosByEmpresa(this._empresaSelecionada.codigoEmpresa);
                 }
             }
         );
@@ -58,13 +58,17 @@ export class CicloListComponent implements OnInit {
         this._empresaSelecionada = new Empresa();
         const codigoEmpresa: number = event.target.value;
         if (codigoEmpresa) {
-            this._empresaSelecionada = this.empresaService.filterByCodigo(codigoEmpresa);
-            this.loadCiclosByEmpresa();
+            this.loadCiclosByEmpresa(codigoEmpresa);
+            this.empresaService.filterByCodigo(codigoEmpresa)
+                .subscribe(response => {
+                    this._empresaSelecionada = response;
+                });
         }
     }
 
-    loadCiclosByEmpresa() {
-        this._ciclosList = this.cicloService.getByEmpresa(this._empresaSelecionada);
+    loadCiclosByEmpresa(codigoEmpresa: number) {
+        this.cicloService.getByEmpresa(codigoEmpresa)
+            .subscribe(response => this._ciclosList = response);
     }
 
     openCicloModal(ciclo?: Ciclo) {

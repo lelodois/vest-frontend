@@ -3,22 +3,22 @@ import {Empresa} from '../model/empresa.model';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import {UrlUtil} from '../common/url.util';
 
 @Injectable()
 export class EmpresaService {
-    url_empresas = 'http://localhost:9099/api/empresas/';
+    EMPRESAS_URL = UrlUtil.URL_ENDPOINT_BASE.concat('empresas/');
 
     constructor(private _http: HttpClient) {
     }
 
     getList(): Observable<Empresa[]> {
-        return this._http.get<Empresa[]>(this.url_empresas);
+        return this._http.get<Empresa[]>(this.EMPRESAS_URL);
     }
 
-    filterByCodigo(codigo: number): Empresa {
-        const url = this.url_empresas.concat(codigo.toString());
-        //return this._http.get<Empresa>(url).;
-        return new Empresa();
+    filterByCodigo(codigo: number): Observable<Empresa> {
+        const url = this.EMPRESAS_URL.concat(codigo.toString());
+        return this._http.get<Empresa>(url);
 
     }
 }
