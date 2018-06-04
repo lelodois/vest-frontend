@@ -1,8 +1,8 @@
-# Vestibular Frontend
+## Vestibular Frontend
 
 Versão Frontend do sistema de vestibular
 
-## Começando
+### Começando
 
 Clone este projeto e execute o comando abaixo:
 
@@ -11,8 +11,6 @@ Clone este projeto e execute o comando abaixo:
 ```
 
 ### Pré-requisitos
-
-Backend [https://github.com/lelodois/vestibular-backend]
 
 ```
   NodeJs
@@ -25,13 +23,17 @@ Backend [https://github.com/lelodois/vestibular-backend]
 * Bootstrap
 * Typescript
 
-## Autor
+### Autor
 
 * **Léo Costa** - *Initial work* - [Meu git](https://github.com/lelodois)
 
-## Acknowledgments
+### Acknowledgments
 
 * Fullstack evangelist
 * Real case
 * etc
+
+### Backend
+
+  [https://github.com/lelodois/vestibular-backend]
 
