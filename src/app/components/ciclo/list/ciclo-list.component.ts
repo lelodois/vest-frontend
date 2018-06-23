@@ -15,12 +15,12 @@ import {CicloEmpresaParam} from '../../../provider/common/cicloEmpresaParam.mode
 })
 export class CicloListComponent implements OnInit {
 
-    _empresasList: Empresa[] = [];
-    _ciclosList: Ciclo[] = [];
-    _empresaSelecionada: Empresa = new Empresa();
+    empresas: Empresa[] = [];
+    ciclos: Ciclo[] = [];
+    empresaSelecionada: Empresa = new Empresa();
 
     @ViewChild('cicloSaveItem')
-    private _cicloSaveItem: CicloSaveComponent;
+    private cicloSaveComponent: CicloSaveComponent;
 
     constructor(private empresaService: EmpresaService,
                 private cicloService: CicloService,
@@ -31,15 +31,15 @@ export class CicloListComponent implements OnInit {
 
     ngOnInit() {
         this.empresaService.getList().subscribe(
-            data => this._empresasList = data
+            data => this.empresas = data
         );
 
         this.listenerCicloListChanged();
 
         const parameter: CicloEmpresaParam = Object.assign(this.activatedRoute.snapshot.queryParams);
         if (parameter && parameter.empresaId) {
-            this._empresaSelecionada.fillByParameter(parameter);
-            this.loadCiclosByEmpresa(this._empresaSelecionada.codigoEmpresa);
+            this.empresaSelecionada.fillByParameter(parameter);
+            this.loadCiclosByEmpresa(this.empresaSelecionada.codigoEmpresa);
         }
     }
 
@@ -47,35 +47,35 @@ export class CicloListComponent implements OnInit {
         this.eventsService.ciclosEvent.subscribe(
             (novoCiclo: Ciclo) => {
                 if (novoCiclo.codigo) {
-                    this.loadCiclosByEmpresa(this._empresaSelecionada.codigoEmpresa);
+                    this.loadCiclosByEmpresa(this.empresaSelecionada.codigoEmpresa);
                 }
             }
         );
     }
 
     onChangeEmpresa(event) {
-        this._ciclosList = [];
-        this._empresaSelecionada = new Empresa();
+        this.ciclos = [];
+        this.empresaSelecionada = new Empresa();
         const codigoEmpresa: number = event.target.value;
         if (codigoEmpresa) {
             this.loadCiclosByEmpresa(codigoEmpresa);
             this.empresaService.filterByCodigo(codigoEmpresa)
                 .subscribe(response => {
-                    this._empresaSelecionada = response;
+                    this.empresaSelecionada = response;
                 });
         }
     }
 
     loadCiclosByEmpresa(codigoEmpresa: number) {
         this.cicloService.getByEmpresa(codigoEmpresa)
-            .subscribe(response => this._ciclosList = response);
+            .subscribe(response => this.ciclos = response);
     }
 
     openCicloModal(ciclo?: Ciclo) {
         if (ciclo === undefined) {
             ciclo = Ciclo.builderNovoCiclo();
         }
-        this._cicloSaveItem.initBy(Object.create(ciclo));
+        this.cicloSaveComponent.initBy(Object.create(ciclo));
     }
 
     navigateToProcessoSeletivoList(ciclo: Ciclo) {

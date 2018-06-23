@@ -1,3 +1,25 @@
 <div class="container">
-    <app-ciclo-list></app-ciclo-list>
+    <div class="text-center" *ngIf="serverEnable == false">
+        <div class="jumbotron">
+            <h3>Página de erro :(</h3>
+            <p>Servidor backend não está disponível</p>
+            <p>
+                <a class="alert-link"
+                   target="_blank"
+                   href="https://github.com/lelodois/vestibular-backend/blob/master/README.md">
+                    ReadMe backend
+                </a>
+            </p>
+        </div>
+    </div>
+
+    <div class="container" *ngIf="serverEnable == true">
+        <div class="text-center">
+            <div class="jumbotron">
+                <div class="has-success">
+                    <app-ciclo-list></app-ciclo-list>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -11,29 +11,30 @@ declare var $: any;
 })
 export class CicloSaveComponent implements AfterViewInit {
 
-    @Input() _codigoEmpresa: number;
-    _ciclo: Ciclo = Ciclo.builderNovoCiclo();
+    @Input()
+    codigoEmpresa: number;
+    ciclo: Ciclo = Ciclo.builderNovoCiclo();
 
-    _saveModal = null;
-    _edicaoCiclo: boolean;
+    saveModal = null;
+    edicaoCiclo: boolean;
 
     constructor(private service: CicloService,
-                private _rootNode: ElementRef) {
+                private rootNode: ElementRef) {
     }
 
     ngAfterViewInit() {
-        this._saveModal = $(this._rootNode.nativeElement).find('#saveModal');
+        this.saveModal = $(this.rootNode.nativeElement).find('#saveModal');
     }
 
     initBy(ciclo: Ciclo) {
-        this._edicaoCiclo = ciclo.codigo > 0;
-        this._ciclo = ciclo;
-        this._saveModal.modal('show');
+        this.edicaoCiclo = ciclo.codigo > 0;
+        this.ciclo = ciclo;
+        this.saveModal.modal('show');
     }
 
     saveCiclo() {
-        this.service.save(this._codigoEmpresa, this._ciclo);
-        this._saveModal.modal('hide');
+        this.service.save(this.codigoEmpresa, this.ciclo);
+        this.saveModal.modal('hide');
     }
 
 }

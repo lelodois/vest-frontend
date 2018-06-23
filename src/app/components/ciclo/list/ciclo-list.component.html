@@ -1,7 +1,7 @@
 <div class="row">
     <ul class="breadcrumb">
-        <li *ngIf="_empresaSelecionada?.nomeFantasia">
-            {{ _empresaSelecionada?.nomeFantasia}}
+        <li *ngIf="empresaSelecionada?.nomeFantasia">
+            {{ empresaSelecionada?.nomeFantasia}}
         </li>
         <li>
             Ciclos por empresa
@@ -18,8 +18,8 @@
             <select class="form-control" id="selectEmpresas"
                     (change)="onChangeEmpresa($event)">
                 <option value="">Selecione a empresa</option>
-                <option *ngFor="let empresa of _empresasList"
-                        [selected]="empresa.codigoEmpresa == _empresaSelecionada?.codigoEmpresa"
+                <option *ngFor="let empresa of empresas"
+                        [selected]="empresa.codigoEmpresa == empresaSelecionada?.codigoEmpresa"
                         [value]="empresa.codigoEmpresa">
                     {{empresa?.nomeFantasia}}
                 </option>
@@ -29,7 +29,7 @@
 </div>
 
 <div class="row"
-     [ngClass]="_empresaSelecionada.codigoEmpresa > 0 ? '' : 'hide'">
+     [ngClass]="empresaSelecionada.codigoEmpresa > 0 ? '' : 'hide'">
     <h4 class="legend-title" style="padding-top: 30px">
         Listagem de Ciclos
     </h4>
@@ -42,7 +42,7 @@
 </div>
 
 <div class="row" style="padding-top: 10px;"
-     [ngClass]="(_empresaSelecionada.codigoEmpresa) > 0 ? '' : 'hide'">
+     [ngClass]="(empresaSelecionada.codigoEmpresa) > 0 ? '' : 'hide'">
     <fieldset>
         <div class="container">
             <table class="table table-bordered" style="text-align: center;">
@@ -57,7 +57,7 @@
                 </thead>
 
                 <tbody>
-                <tr *ngIf="_ciclosList.length == 0">
+                <tr *ngIf="ciclos.length == 0">
                     <td class="info" colspan="6">
                         <span class="active">
                            Nenhum item encontrado
@@ -65,13 +65,13 @@
                     </td>
                 </tr>
 
-                <tr *ngFor="let cicloIndex of _ciclosList">
+                <tr *ngFor="let cicloIndex of ciclos">
                     <td>{{cicloIndex.semestre + '° semestre de ' + cicloIndex.ano}}</td>
                     <td>{{cicloIndex.codigo}}</td>
                     <td>{{cicloIndex.situacaoMatricula == 1 ? 'Ativo' : 'Inativo'}}</td>
                     <td>{{cicloIndex.situacaoInscricao == 1 ? 'Ativo' : 'Inativo'}}</td>
                     <td>
-                        <a class="btn btn-sm btn-primary btn-xs"
+                        <a class="btn btn-sm btn-info btn-xs"
                            (click)="openCicloModal(cicloIndex)">
                             Editar Ciclo
                         </a>
@@ -84,5 +84,5 @@
 </div>
 
 <div>
-    <app-ciclo-save #cicloSaveItem [_codigoEmpresa]="_empresaSelecionada.codigoEmpresa"></app-ciclo-save>
+    <app-ciclo-save #cicloSaveItem [codigoEmpresa]="empresaSelecionada.codigoEmpresa"></app-ciclo-save>
 </div>

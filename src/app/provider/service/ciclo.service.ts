@@ -8,6 +8,7 @@ import {UrlUtil} from '../common/url.util';
 
 @Injectable()
 export class CicloService {
+
     CICLO_URL = UrlUtil.URL_ENDPOINT_BASE.concat('ciclos/');
 
     httpOptions = {
@@ -35,10 +36,6 @@ export class CicloService {
             .subscribe(result => {
                 this._eventsService.ciclosEvent.emit(result as Ciclo);
             });
-    }
-
-    getById(cicloId: number): Observable<Ciclo> {
-        return this._http.get<Ciclo>(this.CICLO_URL.concat(cicloId.toString()));
     }
 
     getByEmpresa(codigoEmpresa: number): Observable<Ciclo[]> {

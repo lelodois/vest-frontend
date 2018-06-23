@@ -13,8 +13,8 @@
                             <div class="col-md-5">
                                 <span for="inputAno">Ano</span>
                                 <input type='number' class="form-control" name="ciclo.ano"
-                                       [disabled]="_edicaoCiclo == true"
-                                       [(ngModel)]="_ciclo.ano"/>
+                                       [disabled]="edicaoCiclo == true"
+                                       [(ngModel)]="ciclo.ano"/>
                             </div>
                             <div class="col-md-7 form-group">
                                 <div class="form-group">
@@ -23,23 +23,23 @@
                                 <div class="form-group">
                                     <label class="checkbox-inline ">
                                         <input type="radio" name="optionsSemestre" value="1"
-                                               (change)="_ciclo.semestre = $event.target.value"
-                                               [disabled]="_edicaoCiclo == true"
-                                               [checked]="_ciclo.semestre == 1"/>
+                                               (change)="ciclo.semestre = $event.target.value"
+                                               [disabled]="edicaoCiclo == true"
+                                               [checked]="ciclo.semestre == 1"/>
                                         <span>1º </span>
                                     </label>
                                     <label class="checkbox-inline ">
                                         <input type="radio" name="optionsSemestre" value="2"
-                                               (change)="_ciclo.semestre = $event.target.value"
-                                               [disabled]="_edicaoCiclo == true"
-                                               [checked]="_ciclo.semestre == 2"/>
+                                               (change)="ciclo.semestre = $event.target.value"
+                                               [disabled]="edicaoCiclo == true"
+                                               [checked]="ciclo.semestre == 2"/>
                                         <span>2º </span>
                                     </label>
                                     <label class="checkbox-inline ">
                                         <input type="radio" name="optionsSemestre" value="0"
-                                               (change)="_ciclo.semestre = $event.target.value"
-                                               [disabled]="_edicaoCiclo == true"
-                                               [checked]="_ciclo.semestre == 0"/>
+                                               (change)="ciclo.semestre = $event.target.value"
+                                               [disabled]="edicaoCiclo == true"
+                                               [checked]="ciclo.semestre == 0"/>
                                         <span>Anual</span>
                                     </label>
                                 </div>
@@ -53,14 +53,14 @@
                                 <div class="col-md-12">
                                     <label class="checkbox-inline ">
                                         <input type="radio" name="optionsMatricula" value="0"
-                                               (change)="_ciclo.situacaoMatricula = $event.target.value"
-                                               [checked]="_ciclo.situacaoMatricula == 0"/>
+                                               (change)="ciclo.situacaoMatricula = $event.target.value"
+                                               [checked]="ciclo.situacaoMatricula == 0"/>
                                         <span>Inativo</span>
                                     </label>
                                     <label class="checkbox-inline">
                                         <input type="radio" name="optionsMatricula" value="1"
-                                               (change)="_ciclo.situacaoMatricula = $event.target.value"
-                                               [checked]="_ciclo.situacaoMatricula == 1"/>
+                                               (change)="ciclo.situacaoMatricula = $event.target.value"
+                                               [checked]="ciclo.situacaoMatricula == 1"/>
                                         <span>Ativo</span>
                                     </label>
                                 </div>
@@ -72,14 +72,14 @@
                                 <div class="col-md-12 ">
                                     <label class="checkbox-inline ">
                                         <input type="radio" name="optionsInscricao" value="0"
-                                               (change)="_ciclo.situacaoInscricao = $event.target.value"
-                                               [checked]="_ciclo.situacaoInscricao == 0"/>
+                                               (change)="ciclo.situacaoInscricao = $event.target.value"
+                                               [checked]="ciclo.situacaoInscricao == 0"/>
                                         <span>Inativo</span>
                                     </label>
                                     <label class="checkbox-inline ">
                                         <input type="radio" name="optionsInscricao" value="1"
-                                               (change)="_ciclo.situacaoInscricao = $event.target.value"
-                                               [checked]="_ciclo.situacaoInscricao == 1"/>
+                                               (change)="ciclo.situacaoInscricao = $event.target.value"
+                                               [checked]="ciclo.situacaoInscricao == 1"/>
                                         <span>Ativo</span>
                                     </label>
                                 </div>
