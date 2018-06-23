@@ -1,15 +1,7 @@
-import {Component, ModuleWithProviders} from '@angular/core';
-import {CicloListComponent} from './components/ciclo/list/ciclo-list.component';
 import {RouterModule, Routes} from '@angular/router';
+import {ModuleWithProviders} from '@angular/core';
 
-@Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
-})
-export class AppComponent {
-    title = 'app';
-}
+import {CicloListComponent} from './components/ciclo/list/ciclo-list.component';
 
 const APP_ROUTES: Routes = [
     {path: 'param-seletivo/ciclo/list', component: CicloListComponent},

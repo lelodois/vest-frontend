@@ -4,9 +4,9 @@ import {Empresa} from '../../../provider/model/empresa.model';
 import {CicloService} from '../../../provider/service/ciclo.service';
 import {Ciclo} from '../../../provider/model/ciclo.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {CicloEmpresaParam} from '../../../provider/model/param/cicloEmpresaParam.model';
 import {EventsService} from '../../../provider/service/events.service';
 import {CicloSaveComponent} from '../save/ciclo-save.component';
+import {CicloEmpresaParam} from '../../../provider/common/cicloEmpresaParam.model';
 
 @Component({
     selector: 'app-ciclo-list',

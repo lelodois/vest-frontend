@@ -1,4 +1,4 @@
-import {CicloEmpresaParam} from './param/cicloEmpresaParam.model';
+import {CicloEmpresaParam} from '../common/cicloEmpresaParam.model';
 
 export class Empresa {
 
