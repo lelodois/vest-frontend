@@ -1,6 +1,7 @@
 ## Vestibular Frontend
 
 Versão Frontend do sistema de vestibular
+
 * ** Backend ** - *Java API* - [Source code](https://github.com/lelodois/vestibular-backend)
 
 ### Começando
@@ -21,8 +22,9 @@ Clone este projeto e execute o comando abaixo:
 ### Tecnologias
 
 * Angular 4
-* Bootstrap
+* Bootstrap 3
 * Typescript
+* JSON Web Tokens
 
 ### Autor
 
