@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, ElementRef, Input} from '@angular/core';
-import {CicloService} from '../../../provider/service/ciclo.service';
-import {Ciclo} from '../../../provider/model/ciclo.model';
+import {CicloService} from '../../provider/service/ciclo.service';
+import {Ciclo} from '../../provider/model/ciclo.model';
 
 declare var $: any;
 

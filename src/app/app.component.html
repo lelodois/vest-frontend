@@ -14,11 +14,9 @@
     </div>
 
     <div class="container" *ngIf="serverEnable == true">
-        <div class="text-center">
-            <div class="jumbotron">
-                <div class="has-success">
-                    <app-ciclo-list></app-ciclo-list>
-                </div>
+        <div class="jumbotron">
+            <div class="has-success">
+                <router-outlet></router-outlet>
             </div>
         </div>
     </div>

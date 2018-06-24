@@ -1,0 +1,60 @@
+<div class="container">
+    <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Sign In</div>
+            </div>
+        </div>
+
+        <div style="padding-top:30px" class="panel-body">
+
+            <div *ngIf="errorMessage == true"
+                 class="alert alert-danger col-sm-12">
+                Login ou senha inválidos
+            </div>
+
+            <form id="loginform" class="form-horizontal" role="form">
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                    <input #loginUsername type="text" class="form-control" name="username" value=""
+                           placeholder="email">
+                </div>
+
+                <div style="margin-bottom: 25px" class="input-group">
+                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                    <input #loginPassword type="password" class="form-control" name="password"
+                           placeholder="password">
+                </div>
+
+
+                <div style="margin-top:10px" class="form-group">
+                    <div class="col-sm-12 controls">
+                        <a id="btn-login"
+                           (click)="login(loginUsername.value, loginPassword.value)"
+                           class="btn btn-success">Login</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="accordion" class="text-right" style="margin-top: 100px;">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true"
+                        aria-controls="collapseOne">
+                    Usuários existentes
+                </button>
+            </h5>
+        </div>
+    </div>
+</div>
+
+<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+    <div class="card-body">
+        <app-user-list></app-user-list>
+    </div>
+</div>

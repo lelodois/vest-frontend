@@ -1,5 +1,8 @@
 <div class="row">
     <ul class="breadcrumb">
+        <li>
+            {{ user.login }}
+        </li>
         <li *ngIf="empresaSelecionada?.nomeFantasia">
             {{ empresaSelecionada?.nomeFantasia}}
         </li>
@@ -34,7 +37,9 @@
         Listagem de Ciclos
     </h4>
     <div class="pull-right">
-        <button type="button" class="btn btn-primary btn-xs"
+        <button type="button"
+                class="btn btn-primary btn-xs"
+                [class.disabled]="user.admin ? '' : 'disabled'"
                 (click)="openCicloModal()">
             <span class="glyphicon glyphicon-plus"></span> Novo Ciclo
         </button>
@@ -72,6 +77,7 @@
                     <td>{{cicloIndex.situacaoInscricao == 1 ? 'Ativo' : 'Inativo'}}</td>
                     <td>
                         <a class="btn btn-sm btn-info btn-xs"
+                           [class.disabled]="user.admin ? '':'disabled'"
                            (click)="openCicloModal(cicloIndex)">
                             Editar Ciclo
                         </a>
@@ -84,5 +90,15 @@
 </div>
 
 <div>
-    <app-ciclo-save #cicloSaveItem [codigoEmpresa]="empresaSelecionada.codigoEmpresa"></app-ciclo-save>
+    <app-ciclo-save #cicloSaveItem
+                    [codigoEmpresa]="empresaSelecionada.codigoEmpresa">
+    </app-ciclo-save>
+</div>
+
+<div style="margin-top: 50px;" class="text-right">
+    <button
+            (click)="logout()"
+            class="btn btn-danger btn-xs ">
+        Logout
+    </button>
 </div>

@@ -1,12 +1,13 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {EmpresaService} from '../../../provider/service/empresa.service';
-import {Empresa} from '../../../provider/model/empresa.model';
-import {CicloService} from '../../../provider/service/ciclo.service';
-import {Ciclo} from '../../../provider/model/ciclo.model';
+import {EmpresaService} from '../../provider/service/empresa.service';
+import {Empresa} from '../../provider/model/empresa.model';
+import {CicloService} from '../../provider/service/ciclo.service';
+import {Ciclo} from '../../provider/model/ciclo.model';
 import {ActivatedRoute, Router} from '@angular/router';
-import {EventsService} from '../../../provider/service/events.service';
-import {CicloSaveComponent} from '../save/ciclo-save.component';
-import {CicloEmpresaParam} from '../../../provider/common/cicloEmpresaParam.model';
+import {EventsService} from '../../provider/service/events.service';
+import {CicloSaveComponent} from '../ciclo-save/ciclo-save.component';
+import {AuthService} from '../../provider/service/auth.service';
+import {User} from '../../provider/model/user.model';
 
 @Component({
     selector: 'app-ciclo-list',
@@ -18,28 +19,34 @@ export class CicloListComponent implements OnInit {
     empresas: Empresa[] = [];
     ciclos: Ciclo[] = [];
     empresaSelecionada: Empresa = new Empresa();
+    user = new User();
 
     @ViewChild('cicloSaveItem')
     private cicloSaveComponent: CicloSaveComponent;
 
     constructor(private empresaService: EmpresaService,
                 private cicloService: CicloService,
+                private authService: AuthService,
                 private router: Router,
                 private activatedRoute: ActivatedRoute,
                 private eventsService: EventsService) {
     }
 
     ngOnInit() {
-        this.empresaService.getList().subscribe(
-            data => this.empresas = data
-        );
 
-        this.listenerCicloListChanged();
+        if (this.authService.isLogged() == false) {
+            this.router.navigate(['login']);
+        } else {
 
-        const parameter: CicloEmpresaParam = Object.assign(this.activatedRoute.snapshot.queryParams);
-        if (parameter && parameter.empresaId) {
-            this.empresaSelecionada.fillByParameter(parameter);
-            this.loadCiclosByEmpresa(this.empresaSelecionada.codigoEmpresa);
+            this.empresaService.getList().subscribe(
+                data => this.empresas = data
+            );
+
+            this.listenerCicloListChanged();
+
+            this.authService.getCurrentUser()
+                .subscribe(userResponse => this.user = userResponse);
+
         }
     }
 
@@ -78,14 +85,8 @@ export class CicloListComponent implements OnInit {
         this.cicloSaveComponent.initBy(Object.create(ciclo));
     }
 
-    navigateToProcessoSeletivoList(ciclo: Ciclo) {
-        this.router.navigate(['/param-seletivo/processo-seletivo/list'], {
-            queryParams: {
-                cicloId: ciclo.codigo,
-                empresaId: ciclo.empresa.codigoEmpresa,
-                nomeFantasia: ciclo.empresa.nomeFantasia
-            }
-        });
+    logout() {
+        this.authService.logout();
+        this.router.navigate(['login']);
     }
-
 }

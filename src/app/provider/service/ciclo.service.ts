@@ -4,12 +4,11 @@ import {Ciclo} from '../model/ciclo.model';
 import {EmpresaService} from './empresa.service';
 import {EventsService} from './events.service';
 import {Observable} from 'rxjs/Observable';
-import {UrlUtil} from '../common/url.util';
 
 @Injectable()
 export class CicloService {
 
-    CICLO_URL = UrlUtil.URL_ENDPOINT_BASE.concat('ciclos/');
+    CICLO_URL = 'http://localhost:9099/api/ciclos/';
 
     httpOptions = {
         headers: new HttpHeaders({
@@ -17,13 +16,13 @@ export class CicloService {
         })
     };
 
-    constructor(private _http: HttpClient,
-                private _empresaService: EmpresaService,
-                private _eventsService: EventsService) {
+    constructor(private http: HttpClient,
+                private empresaService: EmpresaService,
+                private eventsService: EventsService) {
     }
 
     save(codigoEmpresa: number, ciclo: Ciclo) {
-        this._http.post<Ciclo>(this.CICLO_URL,
+        this.http.post<Ciclo>(this.CICLO_URL,
             {
                 ano: ciclo.ano,
                 semestre: ciclo.semestre,
@@ -34,12 +33,12 @@ export class CicloService {
                 }
             }, this.httpOptions)
             .subscribe(result => {
-                this._eventsService.ciclosEvent.emit(result as Ciclo);
+                this.eventsService.ciclosEvent.emit(result as Ciclo);
             });
     }
 
     getByEmpresa(codigoEmpresa: number): Observable<Ciclo[]> {
         const cicloEmpresaUrl: string = 'empresa/' + codigoEmpresa;
-        return this._http.get<Ciclo[]>(this.CICLO_URL.concat(cicloEmpresaUrl));
+        return this.http.get<Ciclo[]>(this.CICLO_URL.concat(cicloEmpresaUrl));
     }
 }

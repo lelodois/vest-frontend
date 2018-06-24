@@ -1,12 +1,11 @@
 import {RouterModule, Routes} from '@angular/router';
 import {ModuleWithProviders} from '@angular/core';
-
-import {CicloListComponent} from './components/ciclo/list/ciclo-list.component';
+import {LoginComponent} from './components/login/login.component';
+import {CicloListComponent} from './components/ciclo-list/ciclo-list.component';
 
 const APP_ROUTES: Routes = [
-    {path: 'param-seletivo/ciclo/list', component: CicloListComponent},
-    {path: '', pathMatch: 'full', redirectTo: 'param-seletivo/ciclo/list'},
-    {path: '**', pathMatch: 'full', redirectTo: 'param-seletivo/ciclo/list'}
+    {path: 'login', component: LoginComponent},
+    {path: 'ciclos', component: CicloListComponent}
 ];
 
-export const routers: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
+export const AppRouters: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);
