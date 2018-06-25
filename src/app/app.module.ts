@@ -15,6 +15,7 @@ import {CicloSaveComponent} from './components/ciclo-save/ciclo-save.component';
 import {LoginComponent} from './components/login/login.component';
 import {AppRouters} from './app.router';
 import {UserListComponent} from './components/user-list/user-list.component';
+import {AuthGuard} from './provider/service/auth-guard.service';
 
 @NgModule({
     imports: [
@@ -31,7 +32,8 @@ import {UserListComponent} from './components/user-list/user-list.component';
         EmpresaService,
         CicloService,
         EventsService,
-        AuthService
+        AuthService,
+        AuthGuard
     ],
     declarations: [
         AppComponent,

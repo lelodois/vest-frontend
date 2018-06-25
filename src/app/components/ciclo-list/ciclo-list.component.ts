@@ -28,26 +28,19 @@ export class CicloListComponent implements OnInit {
                 private cicloService: CicloService,
                 private authService: AuthService,
                 private router: Router,
-                private activatedRoute: ActivatedRoute,
                 private eventsService: EventsService) {
     }
 
     ngOnInit() {
 
-        if (this.authService.isLogged() == false) {
-            this.router.navigate(['login']);
-        } else {
+        this.empresaService.getList().subscribe(
+            data => this.empresas = data
+        );
 
-            this.empresaService.getList().subscribe(
-                data => this.empresas = data
-            );
+        this.listenerCicloListChanged();
 
-            this.listenerCicloListChanged();
-
-            this.authService.getCurrentUser()
-                .subscribe(userResponse => this.user = userResponse);
-
-        }
+        this.authService.getCurrentUser()
+            .subscribe(userResponse => this.user = userResponse);
     }
 
     listenerCicloListChanged() {
