@@ -2,14 +2,15 @@
 
 Versão Frontend do sistema de vestibular
 
-* ** Backend ** - *Java API* - [Source code](https://github.com/lelodois/vestibular-backend)
+* ** Backend ** - *Java API* - [Source code](https://github.com/lelodois/vest-backend)
 
-### Começando
+### Dockerize
 
 Clone este projeto e execute o comando abaixo:
 
 ```
-  npm install && npm start
+  sudo docker build -t vestfront-docker .
+  sudo docker run -d -p 80:80 vestfront-docker
 ```
 
 ### Pré-requisitos
@@ -18,12 +19,14 @@ Clone este projeto e execute o comando abaixo:
   NodeJs
   Npm
   AngularCli
+  Docker
 ```
 ### Tecnologias
 
 * Angular 4
 * Bootstrap 3
 * Typescript
+* Nginx
 * JSON Web Tokens
 
 ### Autor
